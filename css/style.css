@@ -1,0 +1,171 @@
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif&display=swap);
+body {
+  width: 100%; }
+
+.top-body {
+  height: auto; }
+
+footer {
+  background: #000000;
+  height: auto;
+  width: 100%;
+  color: #EAEAEA;
+  text-align: center;
+  position: absolute; }
+
+.container {
+  width: 95%;
+  margin: 0 auto; }
+
+.left {
+  border: black 1px solid;
+  width: 100px;
+  height: 100%;
+  overflow: scroll;
+  position: fixed;
+  left: 0; }
+  .left a {
+    color: black;
+    transition: .3s;
+    font-size: 14px;
+    margin-bottom: 15px; }
+  .left a:hover {
+    color: #000066; }
+
+.right {
+  width: auto;
+  position: relative;
+  margin-left: 102px;
+  box-sizing: border-box; }
+  .right .header {
+    height: 80px;
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    background: #99FFFF;
+    display: flex;
+    justify-content: space-between; }
+    .right .header section {
+      width: 960px;
+      margin: 0 auto; }
+    .right .header .logo {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background: grey;
+      margin-top: 12px; }
+    .right .header .menu-wrapper {
+      float: right;
+      font-size: 18px;
+      font-family: 'Bree Serif', serif; }
+      .right .header .menu-wrapper ul li {
+        float: left;
+        line-height: 80px;
+        margin-right: 40px; }
+        .right .header .menu-wrapper ul li a {
+          color: white;
+          transition: .7s; }
+        .right .header .menu-wrapper ul li a:hover {
+          color: #000066;
+          transition: .7s; }
+  .right .hero {
+    height: 400px;
+    padding-top: 300px;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 20px rgba(227, 123, 137, 0.4), 0 0 50px rgba(0, 0, 0, 0.8); }
+    .right .hero h1 {
+      font-size: 50px;
+      font-family: cursive; }
+    .right .hero h2 {
+      font-size: 38px; }
+  .right .descript-wrapper {
+    width: auto;
+    padding-top: 40px;
+    background: #D7D7D7;
+    text-align: center; }
+    .right .descript-wrapper .descript-area {
+      width: 50%;
+      margin: 0 auto; }
+      .right .descript-wrapper .descript-area .about {
+        margin-bottom: 40px; }
+        .right .descript-wrapper .descript-area .about h2 {
+          font-size: 24px; }
+        .right .descript-wrapper .descript-area .about p {
+          margin-top: 5px; }
+      .right .descript-wrapper .descript-area .policy {
+        padding-bottom: 40px; }
+        .right .descript-wrapper .descript-area .policy h2 {
+          font-size: 24px; }
+        .right .descript-wrapper .descript-area .policy p {
+          margin-top: 5px; }
+
+.thread-body {
+  background-image: url("../image/brick.jpg"); }
+  .thread-body .thread {
+    background: white;
+    border: black 1px solid;
+    margin: 15px auto;
+    width: 90%; }
+    .thread-body .thread h1 {
+      font-size: 24px; }
+    .thread-body .thread .thread-table {
+      margin: 10px; }
+      .thread-body .thread .thread-table .comment-wrapper {
+        margin-bottom: 20px; }
+        .thread-body .thread .thread-table .comment-wrapper .thread-number {
+          display: flex; }
+        .thread-body .thread .thread-table .comment-wrapper .name-wrapper {
+          margin-bottom: 5px; }
+        .thread-body .thread .thread-table .comment-wrapper .comment-box {
+          margin-left: 20px; }
+    .thread-body .thread .post-wrapper {
+      margin-top: 10px; }
+      .thread-body .thread .post-wrapper .name-post-wrapper {
+        margin-bottom: 1px;
+        display: block; }
+
+.board-header {
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: black;
+  position: fixed; }
+
+.sponsors-area {
+  height: 320px;
+  max-height: 400px;
+  min-height: 200px;
+  background: blue;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.thread-list-area {
+  height: 300px;
+  max-height: 400px;
+  min-height: 200px;
+  background: green;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.thread-wrapper {
+  height: 600px;
+  background: red;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.post-wrapper {
+  border: black 1px solid;
+  padding: 40px 20px 10px 20px;
+  margin: 0 auto;
+  box-sizing: border-box; }
+  .post-wrapper .thread-title {
+    width: 20%;
+    min-width: 20px; }
+  .post-wrapper .name-post-wrapper {
+    margin-bottom: 1px;
+    display: block; }
+
+/*# sourceMappingURL=style.css.map */
