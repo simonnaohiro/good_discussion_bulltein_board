@@ -1,0 +1,43 @@
+.board-header {
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: black;
+  position: fixed; }
+
+.sponsors-area {
+  height: 320px;
+  max-height: 400px;
+  min-height: 200px;
+  background: blue;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.thread-list-area {
+  height: 300px;
+  max-height: 400px;
+  min-height: 200px;
+  background: green;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.thread-wrapper {
+  height: 600px;
+  background: red;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.post-wrapper {
+  border: black 1px solid;
+  padding: 40px 20px 10px 20px;
+  margin: 0 auto;
+  box-sizing: border-box; }
+  .post-wrapper .thread-title {
+    width: 20%;
+    min-width: 20px; }
+  .post-wrapper .name-post-wrapper {
+    margin-bottom: 1px;
+    display: block; }
+
+/*# sourceMappingURL=board.css.map */

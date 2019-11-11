@@ -143,4 +143,29 @@ footer {
     margin-bottom: 1px;
     display: block; }
 
-/*# sourceMappingURL=style.css.map */
+.thread-body {
+  background-image: url("../image/brick.jpg"); }
+  .thread-body .thread {
+    background: white;
+    border: black 1px solid;
+    margin: 15px auto;
+    width: 90%; }
+    .thread-body .thread h1 {
+      font-size: 24px; }
+    .thread-body .thread .thread-table {
+      margin: 10px; }
+      .thread-body .thread .thread-table .comment-wrapper {
+        margin-bottom: 20px; }
+        .thread-body .thread .thread-table .comment-wrapper .thread-number {
+          display: flex; }
+        .thread-body .thread .thread-table .comment-wrapper .name-wrapper {
+          margin-bottom: 5px; }
+        .thread-body .thread .thread-table .comment-wrapper .comment-box {
+          margin-left: 20px; }
+    .thread-body .thread .post-wrapper {
+      margin-top: 10px; }
+      .thread-body .thread .post-wrapper .name-post-wrapper {
+        margin-bottom: 1px;
+        display: block; }
+
+/*# sourceMappingURL=thread.css.map */
