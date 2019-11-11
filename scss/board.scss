@@ -1,0 +1,70 @@
+$font-color_default: #777;
+$font-color_date: #e37b89; // TODO:リファクタ必要
+$color_corp: #e3a8b1;
+$font-color_sub1: #b6a489;
+
+$site-width: 980px;
+$container-width: 960px;
+
+$font-size_s: 12px;
+$font-size_m: 14px;
+$font-size_default: 16px;
+$font-size_l: 18px;
+$font-size_xl: 24px;
+$font-size_xxl: 30px;
+$font-size_3l: 38px;
+$font-size_4l: 46px;
+
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 30px;
+$space_3l: 40px;
+
+$font-family_corp: 'Amatic SC', cursive;
+
+.board-header{
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: black;
+  position: fixed;
+}
+.sponsors-area{
+  height: 320px;
+  max-height: 400px;
+  min-height: 200px;
+  background: blue;
+  padding-top: 20px;
+  margin-bottom: $space_xl;
+  border-radius: 4px;
+}
+.thread-list-area{
+  height: 300px;
+  max-height: 400px;
+  min-height: 200px;
+  background: green;
+  margin-bottom: $space_xl;
+  border-radius: 4px;
+}
+.thread-wrapper{
+  height: 600px;
+  background: red;
+  margin-bottom: $space_xl;
+  border-radius: 4px;
+}
+.post-wrapper{
+  border: black 1px solid;
+  padding: 40px 20px 10px 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  .thread-title{
+    width: 20%;
+    min-width: 20px;
+  }
+  .name-post-wrapper{
+    margin-bottom: 1px;
+    display: block;
+  }
+}
