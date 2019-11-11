@@ -16,8 +16,9 @@ debugLogStart();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>テスト掲示板</title>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/board.css">
   <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
 </head>
   <body>

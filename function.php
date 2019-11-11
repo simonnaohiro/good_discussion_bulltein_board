@@ -46,6 +46,12 @@ function debugLogStart(){
 define('MSG01','書き込みがありません');
 define('MSG02','エラーが発生しました。しばらく経ってからお試しください。');
 define('MSG03','最大文字数を超過しています');
+define('MSG04','必要文字数に達していません');
+define('MSG05','Emailの形式ではありません');
+define('MSG06','そのEmailはすでに登録されています');
+define('MSG07','エラーが発生しました。しばらく経ってからやり直してください。');
+define('MSG08','半角英数字のみ使用できます');
+define('MSG09','Emailまたはパスワードが違います');
 
 //====================
 //グロバール変数
@@ -64,10 +70,49 @@ function validRequired($str,$key){
     $err_msg[$key] = MSG01;
   }
 }
-function validMaxLength($str,$key,$max = 40){
-  if($str > $max){
+function validEmail($str,$key){
+  if(!preg_match("/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", $str)){
+    global $err_msg;
+    $err_msg[$key] = MSG05;
+  }
+}
+function validMaxLen($str, $key, $max = 256){
+  if(mb_strlen($str) > $max){
     global $err_msg;
     $err_msg[$key] = MSG03;
+  }
+}
+function validMinLen($str, $key, $min = 6){
+  if(mb_strlen($str) < $min){
+    global $err_msg;
+    $err_msg[$key] = MSG04;
+  }
+}
+function validDubEmail($email){
+  global $err_msg;
+  //例外処理
+  try {
+    // DB接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT count(*) FROM users WHERE email = :email AND delete_flg = 0';
+    $data = array(':email' => $email);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+    // クエリ結果の値を取得
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if(!empty(array_shift($result))){
+      $err_msg['email'] = MSG06;
+      }
+    }catch(Exception $e){
+      error_log('エラー発生' . $e->getMessage());
+      $err_msg['common'] = MSG07;
+    }
+}
+function validHalf($str, $key){
+  if(!preg_match("/^[a-zA-Z0-9]+$/", $str)){
+    global $err_msg;
+    $err_msg[$key] = MSG08;
   }
 }
 //=================
