@@ -2,6 +2,20 @@
   margin: 0 auto;
   width: 80%; }
   .container .form-container {
-    margin: 0 auto; }
+    margin: 100px 0; }
+    .container .form-container .form-wrapper {
+      margin: 0 auto;
+      text-align: center; }
+      .container .form-container .form-wrapper .err {
+        color: red;
+        border-color: red; }
+      .container .form-container .form-wrapper .form h2 {
+        font-size: 18px; }
+      .container .form-container .form-wrapper .form input {
+        font-size: 22px;
+        margin: 10px 0; }
+      .container .form-container .form-wrapper .submit-button {
+        position: relative;
+        left: 70px; }
 
 /*# sourceMappingURL=signup.css.map */

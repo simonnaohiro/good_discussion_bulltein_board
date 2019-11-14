@@ -1,11 +1,24 @@
 {
   "name": "resba_board",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonnaohiro/good_discussion_bulltein_board.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonnaohiro/good_discussion_bulltein_board/issues"
+  },
+  "homepage": "https://github.com/simonnaohiro/good_discussion_bulltein_board#readme",
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "jquery": "^3.4.1"
+  },
+  "dependencies": {},
+  "description": ""
 }

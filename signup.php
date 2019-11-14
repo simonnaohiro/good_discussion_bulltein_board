@@ -35,36 +35,42 @@ if(!empty($_POST)){
     //再入力したパスワードの最大、最小文字数チェック
     validMaxLen($pass_re, 'pass_re');
     validMinLen($pass_re, 'pass_re');
+
+
     if(empty($err_msg)){
+      validMatch($pass, $pass_re, 'pass');
+
+      if(empty($err_msg)){
      //例外処理
-     try {
-       // DBへ接続
-       $dbh = dbConnect();
-       // SQL文作成
-       $sql = 'INSERT INTO users (email,password,login_time,create_date) VALUES(:email,:pass,:login_time,:create_date)';
-       $data = array(':email' => $email, ':pass' => password_hash($pass, PASSWORD_DEFAULT),
-                     ':login_time' => date('Y-m-d H:i:s'),
-                     ':create_date' => date('Y-m-d H:i:s'));
-       // クエリ実行
-       $stmt = queryPost($dbh, $sql, $data);
+       try {
+         // DBへ接続
+         $dbh = dbConnect();
+         // SQL文作成
+         $sql = 'INSERT INTO users (email,password,login_time,create_date) VALUES(:email,:pass,:login_time,:create_date)';
+         $data = array(':email' => $email, ':pass' => password_hash($pass, PASSWORD_DEFAULT),
+                       ':login_time' => date('Y-m-d H:i:s'),
+                       ':create_date' => date('Y-m-d H:i:s'));
+         // クエリ実行
+         $stmt = queryPost($dbh, $sql, $data);
 
-       //  クエリ成功の場合
-       if($stmt){
-         //ログイン有効期限（デフォルトを１時間とする）
-         $sesLimit = 60*60;
-         // 最終ログイン日時を現在日時に
-         $_SESSION['login_date'] = time();
-         $_SESSION['login_limit'] = $sesLimit;
-         // ユーザーIDを格納
-         $_SESSION['user_id'] = $dbh->lastInsertId();
+         //  クエリ成功の場合
+         if($stmt){
+           //ログイン有効期限（デフォルトを１時間とする）
+           $sesLimit = 60*60;
+           // 最終ログイン日時を現在日時に
+           $_SESSION['login_date'] = time();
+           $_SESSION['login_limit'] = $sesLimit;
+           // ユーザーIDを格納
+           $_SESSION['user_id'] = $dbh->lastInsertId();
 
-         debug('セッション変数の中身：'.print_r($_SESSION,true));
+           debug('セッション変数の中身：'.print_r($_SESSION,true));
 
-         header("Location:mypage.php"); //マイページへ
+           header("Location:mypage.php"); //マイページへ
+         }
+       }catch(Exception $e){
+         error_log('エラー発生:'.$e->getMessage());
+         $err_msg = MSG07;
        }
-     }catch(Exception $e){
-       error_log('エラー発生:'.$e->getMessage());
-       $err_msg = MSG07;
      }
     }
   }
@@ -77,42 +83,66 @@ if(!empty($_POST)){
     <title>ユーザー登録</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/signup.css">
+    <script src="bundle.js"></script>
   </head>
   <body>
     <div class="container">
       <section id="main">
         <div class="form-container">
-          <form class="form" action="" method="post">
-            <h2>ユーザーネーム</h2>
-            <div class="area-msg">
-              <!-- ここにエラーメッセージ -->
-            </div>
-            <label class="">
+          <form class="form-wrapper" action="" method="post">
+            <label class="form mail-form">
+              <h2>メールアドレス</h2>
+              <div class="area-msg <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
+                <!-- ここにエラーメッセージ -->
+                <?php if(!empty($err_msg['email'])){
+                  echo $err_msg['email'];
+                } ?>
+              </div>
               <input type="text" name="email" placeholder="Eメールアドレス">
             </label>
-            <h2>ユーザーネーム</h2>
-            <div class="area-msg">
-              <!-- ここにエラーメッセージ -->
-            </div>
-            <label class="">
-              <input type="text" name="pass" placeholder="パスワード">
+            <label class="form pass-form">
+              <h2>パスワード<button id="show-btn" class="" type="button" name="button" >パスワードを見る</button></h2>
+              <div class="area-msg <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
+                <!-- ここにエラーメッセージ -->
+                <?php if(!empty($err_msg['pass'])) echo $err_msg['pass'];?>
+              </div>
+              <input id="js-pass-target" class="js-pass-target" type="password" name="pass" placeholder="パスワード ">
             </label>
-            <h2>ユーザーネーム</h2>
-            <div class="area-msg">
-              <!-- ここにエラーメッセージ -->
-            </div>
-            <label class="">
-              <input type="text" name="pass_re" placeholder="パスワード（再入力）">
+            <label class="form pass-reform">
+              <h2>パスワード</h2>
+              <div class="area-msg <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
+                <!-- ここにエラーメッセージ -->
+                <?php if(!empty($err_msg['pass_re'])) echo $err_msg['pass_re'] ?>
+              </div>
+              <input class="js-pass-target" type="password" name="pass_re" placeholder="パスワード（再入力）">
             </label>
-            <div class="area-msg">
-
-            </div>
-            <div class="btn-container">
-              <input type="submit" value="登録する">
-            </div>
+            <label class="submit-button">
+              <div class="area-msg">
+                <!-- ここにエラーメッセージ -->
+              </div>
+              <div class="btn-container">
+                <input type="submit" name="" value="送信する">
+              </div>
+            </label>
           </form>
         </div>
       </section>
     </div>
+    <script type="text/javascript" >
+      let toggle_btn = document.getElementById('show-btn');
+      toggle_btn.addEventListener('click',function(){
+
+        let input = document.getElementById('js-pass-target');
+        let style = input.getAttribute('type');
+
+        if(style == 'password'){
+          input.setAttribute('type','text');
+          document.getElementById('show-btn').textContent = 'パスワードを隠す';
+        }else if(style = 'text'){
+          input.setAttribute('type','password');
+          document.getElementById('show-btn').textContent = 'パスワードを見る';
+        }
+      },false);
+    </script>
   </body>
 </html>

@@ -52,7 +52,8 @@ define('MSG06','そのEmailはすでに登録されています');
 define('MSG07','エラーが発生しました。しばらく経ってからやり直してください。');
 define('MSG08','半角英数字のみ使用できます');
 define('MSG09','Emailまたはパスワードが違います');
-
+define('MSG10','入力欄が空です');
+define('MSG11','入力された内容が一致しません');
 //====================
 //グロバール変数
 //====================
@@ -67,7 +68,7 @@ $err_msg = array();
 function validRequired($str,$key){
   if($str === ""){
     global $err_msg;
-    $err_msg[$key] = MSG01;
+    $err_msg[$key] = MSG10;
   }
 }
 function validEmail($str,$key){
@@ -113,6 +114,12 @@ function validHalf($str, $key){
   if(!preg_match("/^[a-zA-Z0-9]+$/", $str)){
     global $err_msg;
     $err_msg[$key] = MSG08;
+  }
+}
+function validMatch($str1,$str2,$key){
+  if($str1 !== $str2){
+    global $err_msg;
+    $err_msg[$key] = MSG11;
   }
 }
 //=================
