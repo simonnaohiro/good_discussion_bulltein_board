@@ -109,7 +109,7 @@ if(!empty($_POST)){
               <input id="js-pass-target" class="js-pass-target" type="password" name="pass" placeholder="パスワード ">
             </label>
             <label class="form pass-reform">
-              <h2>パスワード</h2>
+              <h2>パスワード(再入力)</h2>
               <div class="area-msg <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
                 <!-- ここにエラーメッセージ -->
                 <?php if(!empty($err_msg['pass_re'])) echo $err_msg['pass_re'] ?>

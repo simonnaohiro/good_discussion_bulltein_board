@@ -155,7 +155,27 @@ function queryPost($dbh, $sql, $data){
   debug('クエリ成功');
   return $stmt;
 }
+function getUser(){
+  debug('ユーザーを取得します');
+  //例外処理
+  try{
+    //DB接続
+    $dbh = dbConnect();
+    //SQL文の作成
+    $sql = 'SELECT * FROM users WHERE id = ;u_id AND delete_flg = 0';
+    $data = array(':u_id' => $u_id);
+    //クエリ実行
+    $stmt = qureyPost($dbh, $sql, $data);
 
+    if($stmt){
+      return $stmt->fetch(PDO::FETCH_ASSOC);
+    }else{
+      return false;
+    }
+  }catch(Exception $e){
+    error_log('エラー発生' . $e->getMessage());
+  }
+}
 function getComment(){
   debug('書き込みを取得します');
   try{
