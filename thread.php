@@ -1,14 +1,15 @@
 <?php
-require('function.php');
+  require('function.php');
 
-debug('============================');
-debug('スレッドページ');
-debug('============================');
-debugLogStart();
+  debug('============================');
+  debug('スレッドページ');
+  debug('============================');
+  debugLogStart();
+  //ログイン認証
+  require('auth.php')
+  require('post_comment_function.php');
 
-require('post_comment_function.php');
-
-debug('画面表示処理終了 >>>>>>>>>>>>>>>>>>>>>>>>>>');
+  debug('画面表示処理終了 >>>>>>>>>>>>>>>>>>>>>>>>>>');
 ?>
 
 <?php

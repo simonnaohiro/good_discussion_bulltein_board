@@ -1,14 +1,12 @@
 <?php
-require('function.php');
+  require('function.php');
 
-debug("===========================");
-debug('掲示板〜スレッド一覧ページ〜');
-debug("===========================");
-debugLogStart();
-
-
-
-
+  debug("===========================");
+  debug('掲示板〜スレッド一覧ページ〜');
+  debug("===========================");
+  debugLogStart();
+  //ログイン認証
+  require('auth.php');
  ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">

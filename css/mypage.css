@@ -1,0 +1,47 @@
+.header-img {
+  height: 200px;
+  width: 100%;
+  background: grey; }
+
+.mypage-wrapper {
+  height: 400px; }
+  .mypage-wrapper .container {
+    background: skyblue;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-start; }
+    .mypage-wrapper .container .mypage-container {
+      margin: 0 auto; }
+      .mypage-wrapper .container .mypage-container .menu {
+        display: inline-block;
+        border: 1px solid grey; }
+      .mypage-wrapper .container .mypage-container .left-list {
+        width: 25%;
+        height: 100%; }
+      .mypage-wrapper .container .mypage-container .right-list {
+        width: 25%;
+        height: 100%;
+        border: 1px solid grey; }
+      .mypage-wrapper .container .mypage-container .mymenu {
+        margin-top: 10px;
+        width: 45%;
+        border: 1px solid grey;
+        position: relative;
+        height: 100%; }
+        .mypage-wrapper .container .mypage-container .mymenu .user-img {
+          position: absolute;
+          top: -60px;
+          border-radius: 50%;
+          background: red;
+          width: 150px;
+          height: 150px; }
+        .mypage-wrapper .container .mypage-container .mymenu .user-profile {
+          box-sizing: border-box;
+          width: 350px;
+          margin-left: 150px;
+          height: 100px; }
+        .mypage-wrapper .container .mypage-container .mymenu .menu-wrapper {
+          margin-top: 10px; }
+
+/*# sourceMappingURL=mypage.css.map */

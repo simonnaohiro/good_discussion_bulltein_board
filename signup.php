@@ -7,7 +7,8 @@ debug("「「「「「「「「「「「「「「「「「「「「「「「「�
 debug("ユーザー登録ページ");
 debug("「「「「「「「「「「「「「「「「「「「「「「「「「");
 debugLogStart();
-
+//ログイン認証
+require('auth.php');
 //post送信されていた場合
 if(!empty($_POST)){
   $email = isset($_POST['email']) && is_string($_POST['email']) ? $_POST['email'] : "";
@@ -83,7 +84,6 @@ if(!empty($_POST)){
     <title>ユーザー登録</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/signup.css">
-    <script src="bundle.js"></script>
   </head>
   <body>
     <div class="container">

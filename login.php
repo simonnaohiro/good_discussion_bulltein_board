@@ -96,7 +96,6 @@
     <title>ユーザー登録</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/signup.css">
-    <script src="bundle.js"></script>
   </head>
   <body>
     <div class="container">

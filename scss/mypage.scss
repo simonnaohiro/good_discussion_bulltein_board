@@ -1,0 +1,58 @@
+
+.header-img{
+  height: 200px;
+  width: 100%;
+  background: grey;
+}
+
+.mypage-wrapper{
+  height: 400px;
+  .container{
+    background: skyblue;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-start;
+    .mypage-container{
+      margin: 0 auto;
+      .menu{
+        display: inline-block;
+        border: 1px solid grey;
+        // text-align: center;
+      }
+      .left-list{
+        width: 25%;
+        height: 100%;
+      }
+      .right-list{
+        width: 25%;
+        height: 100%;
+        border: 1px solid grey;
+      }
+      .mymenu{
+        margin-top: 10px;
+        width: 45%;
+        border: 1px solid grey;
+        position: relative;
+        height: 100%;
+        .user-img{
+          position: absolute;
+          top: -60px;
+          border-radius: 50%;
+          background: red;
+          width: 150px;
+          height: 150px;
+        }
+        .user-profile{
+          box-sizing: border-box;
+          width: 350px;
+          margin-left: 150px;
+          height: 100px;
+        }
+        .menu-wrapper{
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
