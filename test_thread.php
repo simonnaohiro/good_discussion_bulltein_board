@@ -6,13 +6,12 @@
   debug('============================');
   debugLogStart();
   //ログイン認証
-  require('auth.php')
+  require('auth.php');
+  require('get_comment_function.php');
   require('post_comment_function.php');
 
   debug('画面表示処理終了 >>>>>>>>>>>>>>>>>>>>>>>>>>');
-?>
 
-<?php
 $thread_title = 'スレッド';
 require('head.php');
 ?>
@@ -80,7 +79,7 @@ require('head.php');
       </div>
       <section>
         <form class="post-wrapper" action="" method="post">
-          <p><?php if(!empty($err_msg['text'])) echo $err_msg['chat'] ; ?></p>
+          <p><?php if(!empty($err_msg['chat'])) echo $err_msg['chat'] ; ?></p>
           <label class="name-post-wrapper">
             <input type="text" name="name" placeholder="名前">
             <input type="text" name="email" placeholder="Eメール">

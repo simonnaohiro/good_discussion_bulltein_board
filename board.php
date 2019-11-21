@@ -6,7 +6,9 @@
   debug("===========================");
   debugLogStart();
   //ログイン認証
-  require('auth.php');
+  require('create_thread_function.php');
+
+
  ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">

@@ -39,7 +39,7 @@
             <div class="menu-wrapper">
               ここにユーザーの情報、ページのスタイルの変更などの編集機能を入れる
               <a href="logout.php">ログアウトする</a>
-              <a href="thread.php">スレッドへ</a>
+              <a href="test_thread.php">スレッドへ</a>
             </div>
           </div>
           <div class="right-list menu">

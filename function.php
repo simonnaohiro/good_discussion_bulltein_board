@@ -77,7 +77,7 @@ function validEmail($str,$key){
     $err_msg[$key] = MSG05;
   }
 }
-function validMaxLen($str, $key, $max = 256){
+function validMaxLen($str, $key, $max = 20){
   if(mb_strlen($str) > $max){
     global $err_msg;
     $err_msg[$key] = MSG03;
@@ -176,28 +176,6 @@ function getUser(){
     error_log('エラー発生' . $e->getMessage());
   }
 }
-function getComment(){
-  debug('書き込みを取得します');
-  try{
-    //connect to DB
-    $dbh = dbConnect();
-    //set the SQL
-    $sql = 'SELECT * FROM response';
-    $data = array();
-    //do the query
-    $stmt = queryPost($dbh, $sql, $data);
-
-    if($stmt){
-      //クエリ結果の全データを返却
-      return $stmt->fetchAll();
-    }else{
-      return false;
-    }
-
-  } catch(exception $e) {
-    error_log('エラー発生' . $e->getMessege());
-  }
-}
 
 function makeRandId($length = 9){
   static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
@@ -208,6 +186,14 @@ function makeRandId($length = 9){
   return $str;
 }
 
+function makeThreadRandId($length = 12){
+  static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
+  $str = '';
+  for($i = 0; $i < $length; ++$i){
+    $str .= $chars[mt_rand(0,61)];
+  }
+  return $str;
+}
 // get_thread(){
 //
 // }
