@@ -1,13 +1,13 @@
 <?php
-function getComment(){
-  $dbName = $_GET['tID'];
+function getComment($dbName){
   debug('書き込みを取得します');
   try{
     //connect to DB
     $dbh = dbConnect();
     //set the SQL
-    $sql = 'SELECT * FROM '.$dbName.'';
+    $sql = 'SELECT * FROM '.$dbName;
     $data = array();
+    debug($dbName);
     //do the query
     $stmt = queryPost($dbh, $sql, $data);
 

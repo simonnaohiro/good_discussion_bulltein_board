@@ -12,11 +12,13 @@
 
   debug('画面表示処理終了 >>>>>>>>>>>>>>>>>>>>>>>>>>');
   $urlParam = `http://`.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-  $dbGetComment = getComment();
+  $dbGetComment = getComment($dbName);
   $thread_title = $dbGetComment[0]['thread_title'];
   require('head.php');
 ?>
-
+  <header>
+    <a href="board.php">掲示板へ</a>
+  </header>
   <body class="thread-body">
     <div class="thread">
       <header>
@@ -52,13 +54,8 @@
            if(preg_match_all('(https?://[-_.!~*\'()a-zA-Z0-9;/?:@&=+$,%#]+)', $text, $result) !== 0){
              foreach($result[0] as $value){ ?>
                <?php
-                // echo $value;
-                // var_dump($url_link);
-                // echo $text;
                 $replace = '<a href="'.$value.'">'.$value.'</a>';
                 $text =  str_replace($value, $replace ,$text);
-                // var_dump($url_link);
-                // var_dump($text)
                 ?>
                <?php
              }
