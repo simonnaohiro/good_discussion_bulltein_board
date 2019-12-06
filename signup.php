@@ -7,8 +7,6 @@ debug("「「「「「「「「「「「「「「「「「「「「「「「「�
 debug("ユーザー登録ページ");
 debug("「「「「「「「「「「「「「「「「「「「「「「「「「");
 debugLogStart();
-//ログイン認証
-require('auth.php');
 //post送信されていた場合
 if(!empty($_POST)){
   $email = isset($_POST['email']) && is_string($_POST['email']) ? $_POST['email'] : "";
@@ -47,8 +45,9 @@ if(!empty($_POST)){
          // DBへ接続
          $dbh = dbConnect();
          // SQL文作成
-         $sql = 'INSERT INTO users (email,password,login_time,create_date) VALUES(:email,:pass,:login_time,:create_date)';
+         $sql = 'INSERT INTO users1 (email, password, user_id, login_time, create_date) VALUES(:email,:pass,:user_id,:login_time,:create_date)';
          $data = array(':email' => $email, ':pass' => password_hash($pass, PASSWORD_DEFAULT),
+                       ':user_id' => makeRandId(),
                        ':login_time' => date('Y-m-d H:i:s'),
                        ':create_date' => date('Y-m-d H:i:s'));
          // クエリ実行
@@ -106,7 +105,7 @@ if(!empty($_POST)){
                 <!-- ここにエラーメッセージ -->
                 <?php if(!empty($err_msg['pass'])) echo $err_msg['pass'];?>
               </div>
-              <input id="js-pass-target" class="js-pass-target" type="password" name="pass" placeholder="パスワード ">
+              <input id="js-pass-target1" type="password" name="pass" placeholder="パスワード ">
             </label>
             <label class="form pass-reform">
               <h2>パスワード(再入力)</h2>
@@ -114,7 +113,7 @@ if(!empty($_POST)){
                 <!-- ここにエラーメッセージ -->
                 <?php if(!empty($err_msg['pass_re'])) echo $err_msg['pass_re'] ?>
               </div>
-              <input class="js-pass-target" type="password" name="pass_re" placeholder="パスワード（再入力）">
+              <input id="js-pass-target2" type="password" name="pass_re" placeholder="パスワード（再入力）">
             </label>
             <label class="submit-button">
               <div class="area-msg">
@@ -132,14 +131,18 @@ if(!empty($_POST)){
       let toggle_btn = document.getElementById('show-btn');
       toggle_btn.addEventListener('click',function(){
 
-        let input = document.getElementById('js-pass-target');
-        let style = input.getAttribute('type');
+        let input1 = document.getElementById('js-pass-target1');
+        let input2 = document.getElementById('js-pass-target2') ;
+        let style1 = input1.getAttribute('type');
+        let style2 = input2.getAttribute('type');
 
-        if(style == 'password'){
-          input.setAttribute('type','text');
+        if(style1 == 'password' && style2 == 'password'){
+          input1.setAttribute('type','text');
+          input2.setAttribute('type','text');
           document.getElementById('show-btn').textContent = 'パスワードを隠す';
-        }else if(style = 'text'){
-          input.setAttribute('type','password');
+        }else if(style1 == 'text' && style2 == 'text'){
+          input1.setAttribute('type','password');
+          input2.setAttribute('type','password');
           document.getElementById('show-btn').textContent = 'パスワードを見る';
         }
       },false);

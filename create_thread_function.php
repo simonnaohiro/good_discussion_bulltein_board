@@ -15,12 +15,19 @@
       //例外処理
       $threadDBName = 'response'.makeThreadRandId();
       try {
-        $dbh = dbConnect();
+        $dbh = dbConnect('resba_board');
         $sql = 'CREATE TABLE `resba_board`.`'.$threadDBName.'`
-        ( `id` INT(11) NOT NULL AUTO_INCREMENT UNIQUE, `thread_title` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-         `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-         `comment_val` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `delete_flg` BOOLEAN NOT NULL DEFAULT FALSE , `comment_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-         `commenter_id` VARCHAR(255) NULL DEFAULT NULL ) ENGINE = InnoDB';
+        (
+          `id` int(11) NOT NULL UNIQUE AUTO_INCREMENT,
+          `thread_title` varchar(255) DEFAULT NULL,
+          `name` varchar(255) NOT NULL,
+          `email` varchar(255) NOT NULL,
+          `comment_val` text NOT NULL,
+          `comment_time` time NOT NULL,
+          `delete_flg` tinyint(1) NOT NULL DEFAULT "0",
+          `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+          `commenter_id` varchar(255) DEFAULT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8';
         $data = array();
         debug('SQL:'.$sql);
         debug('流し込みデータ:'.print_r($data, true));
@@ -29,8 +36,8 @@
         if($stmt){
           debug('スレッドを作成しました');
           try{
-            $sql2 = 'INSERT INTO '.$threadDBName.' (thread_title, name, email, comment_val, comment_time, commenter_id) VALUES (:thread_title, :name, :email, :chat, :comment_time, :commenter_id)';
-            $data2 = array(':thread_title' => $thread_title ,':name' => $name,':email' => $email, ':chat' => $chat, ':comment_time' => date('Y-m-d H:i:s'), ':commenter_id' => makeRandId());
+            $sql2 = 'INSERT INTO '.$threadDBName.' (thread_title, name, email, comment_val, comment_time , comment_date, commenter_id) VALUES (:thread_title, :name, :email, :chat, :comment_time, :comment_date, :commenter_id)';
+            $data2 = array(':thread_title' => $thread_title , ':name' => $name , ':email' => $email , ':chat' => $chat , ':comment_time' => date('i:s') , ':comment_date' => date('Y-m-d H:i:s') , ':commenter_id' => makeRandId());
             debug('SQL:'.$sql2);
             debug('流し込みデータ:'.print_r($data2, true));
             //クエリ実行

@@ -39,9 +39,9 @@
       try{
 
         //DBに接続
-        $dbh = dbConnect();
+        $dbh = dbConnect('resba_board');
         //SQL文作成
-        $sql = 'SELECT password, id FROM users WHERE email = :email AND delete_flg = 0';
+        $sql = 'SELECT password, id FROM users1 WHERE email = :email AND delete_flg = 0';
         $data = array( 'email' => $email );
         //クエリ実行
         $stmt =  queryPost($dbh, $sql, $data);

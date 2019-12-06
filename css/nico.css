@@ -1,7 +1,8 @@
 header {
   width: 100%;
   background: #272727;
-  position: fixed; }
+  position: fixed;
+  z-index: 1000; }
   header .container {
     margin: 0 auto;
     height: 35px;
@@ -53,11 +54,20 @@ main {
             width: 960.69px; }
           main .container .video-wrapper .primary .primary-inner .video {
             height: 540px;
-            overflow: hidden; }
+            overflow: hidden;
+            position: relative; }
             main .container .video-wrapper .primary .primary-inner .video iframe {
               box-sizing: border-box;
               width: 960.69px;
               height: 540px; }
+            main .container .video-wrapper .primary .primary-inner .video #commentLayer {
+              position: absolute;
+              pointer-events: none;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              width: 100%;
+              height: 100%; }
           main .container .video-wrapper .primary .primary-inner .controller-wrapper {
             background: black;
             height: 45px;
@@ -95,7 +105,7 @@ main {
       main .container .video-wrapper .secondary {
         display: inline-block;
         background: white;
-        width: 30%;
+        width: 385.7px;
         height: 663px; }
         main .container .video-wrapper .secondary .sns-wrapper {
           display: -webkit-flex;
@@ -123,8 +133,10 @@ main {
           main .container .video-wrapper .secondary .sns-wrapper .sns {
             font-size: 24px; }
         main .container .video-wrapper .secondary .comment-wrapper {
+          overflow: hidden;
           box-sizing: border-box;
-          height: 80%; }
+          height: 93%;
+          border-right: solid 1px gainsboro; }
           main .container .video-wrapper .secondary .comment-wrapper .list-switch {
             border-top: solid 1px gainsboro; }
             main .container .video-wrapper .secondary .comment-wrapper .list-switch ul {
@@ -149,29 +161,43 @@ main {
               display: -webkit-flex;
               white-space: nowrap;
               overflow: scroll;
+              -ms-overflow-style: none;
               margin-left: 6px; }
               main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-header ul {
                 width: auto; }
                 main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-header ul li {
                   box-sizing: border-box;
                   display: inline-block;
-                  overflow-x: scroll; }
+                  overflow-x: scroll;
+                  resize: horizontal;
+                  max-width: 180px;
+                  min-width: 70px; }
                 main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-header ul #js-comment {
-                  width: 40%; }
+                  width: 40%;
+                  max-width: 180px;
+                  min-width: 70px; }
+                main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-header ul #js-commet-time {
+                  max-width: 180px;
+                  min-width: 70px; }
+            main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-header::-webkit-scrollbar {
+              display: none; }
             main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-body {
               margin-left: 6px;
               height: 98%;
               width: 100%;
-              overflow: scroll; }
+              overflow: scroll;
+              display: flex;
+              display: -webkit-flex; }
             main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-contents {
               overflow: hidden;
               white-space: nowrap;
+              border-right: solid 1px gainsboro;
               font-size: 12px;
               padding: 8px 0; }
             main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment-contents:hover {
               cursor: pointer;
               background: gainsboro; }
             main .container .video-wrapper .secondary .comment-wrapper .comment-box .comment {
-              width: 200px; }
+              display: block; }
 
 /*# sourceMappingURL=nico.css.map */

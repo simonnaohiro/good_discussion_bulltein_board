@@ -12,7 +12,7 @@
 
   debug('画面表示処理終了 >>>>>>>>>>>>>>>>>>>>>>>>>>');
   $urlParam = `http://`.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-  $dbGetComment = getComment($dbName);
+  $dbGetComment = getComment($tableName);
   $thread_title = $dbGetComment[0]['thread_title'];
   require('head.php');
 ?>
@@ -33,7 +33,7 @@
           <!-- print response number,name,datetime and comment ID  -->
           <?php if($val['delete_flg']){?>
             <div class="name-wrapper">
-              <p><?php echo $val['id']; ?> 名前：あべし！！ <?php echo $val['comment_time'] ?> ID:???</p>
+              <p><?php echo $val['id']; ?> 名前：あべし！！ <?php echo $val['comment_date'] ?> ID:???</p>
               <p style="<?php if($val['email'] === "") echo 'display:none;' ;?>">email:<?php echo $val['email'] ;?></p>
             </div>
             <div class="comment-box">
@@ -42,7 +42,7 @@
           </div>
           <?php }else{?>
           <div class="name-wrapper">
-            <p><?php echo $val['id']; ?> 名前：<?php echo $val['name']; ?> <?php echo $val['comment_time'] ?> ID:<?php echo $val['commenter_id'] ?></p>
+            <p><?php echo $val['id']; ?> 名前：<?php echo $val['name']; ?> <?php echo $val['comment_date'] ?> ID:<?php echo $val['commenter_id'] ?></p>
             <p style="<?php if($val['email'] === "") echo 'display:none;' ;?>">email:<?php echo $val['email'] ;?></p>
           </div>
           <!-- print a content of response-->
@@ -70,8 +70,6 @@
         </div>
         <?php
         }
-        ?>
-        <?php
         }
          ?>
       </div>

@@ -1,23 +1,19 @@
 <?php
-function getComment($tableName){
-  debug('書き込みを取得します');
+function getThread(){
+  debug('全データを取得');
   try{
-    //connect to DB
     $dbh = dbConnect('resba_board');
-    //set the SQL
-    $sql = 'SELECT * FROM '.$tableName;
+    // $sql = 'SELECT * FROM DBA_TABLES ORDER BY OWNER,TABLE_NAME';
+    $sql = 'SHOW TABLES';
     $data = array();
-    //do the query
     $stmt = queryPost($dbh, $sql, $data);
 
     if($stmt){
-      //クエリ結果の全データを返却
       return $stmt->fetchAll();
     }else{
       return false;
     }
-
-  } catch(exception $e) {
+  } catch (Exception $e){
     error_log('エラー発生' . $e->getMessege());
   }
 }

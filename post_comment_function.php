@@ -1,6 +1,6 @@
 <?php
 $name = ($_POST['name'] == "") ? '禁断のミノリス774': $_POST['name'];
-$email = (isset($_POST['email'])) ? $_POST['email']: '';
+$email = (isset($_POST['email'])) ? $_POST['email'] : '';
 $chat = (isset($_POST['chat'])) ? $_POST['chat'] : '';
 
 if(!empty($_POST)){
@@ -13,8 +13,8 @@ if(!empty($_POST)){
     $dbName = $_GET['tID'];
     try{
       $dbh = dbConnect();
-      $sql = 'INSERT INTO '.$dbName.' (name, email, comment_val, comment_time, commenter_id) VALUES (:name, :email, :chat, :comment_time, :commenter_id)';
-      $data = array(':name' => $name , ':email' => $email , ':chat' => $chat , ':comment_time' => date('Y-m-d H:i:s') , ':commenter_id' => makeRandId());
+      $sql = 'INSERT INTO '.$dbName.' (name, email, comment_val, comment_time , comment_date, commenter_id) VALUES (:name, :email, :chat, :comment_time, :comment_date, :commenter_id)';
+      $data = array(':name' => $name , ':email' => $email , ':chat' => $chat , ':comment_time' => date('i:s') , ':comment_date' => date('Y-m-d H:i:s') , ':commenter_id' => makeRandId());
       debug('SQL:'.$sql);
       debug('流し込みデータ'.print_r($data,true));
       //クエリ実行

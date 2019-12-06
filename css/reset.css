@@ -49,3 +49,6 @@ table {
 button{
   border: none;
 }
+input:focus{
+  outline: none;
+}

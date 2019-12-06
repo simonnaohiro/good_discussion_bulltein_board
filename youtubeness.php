@@ -7,6 +7,12 @@
   debugLogStart();
   //ログイン認証
   require('auth.php');
+  require('get_comment_function.php');
+  require('post_comment_function.php');
+
+  debug('画面表示処理終了 >>>>>>>>>>>>>>>>>>>>>>>>>>');
+  $dbGetComment = getComment($dbName);
+  $thread_title = $dbGetComment[0]['thread_title'];
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -49,21 +55,42 @@
       <div class="container">
         <div class="primary">
           <div class="primary-inner">
-            <div class="">
-              <iframe id="player" src="https://www.youtube.com/watch?v=71ZKpvKlgVY" ></iframe>
+            <div class="player-wrapper">
+              <iframe id="player" src="https://www.youtube.com/embed/71ZKpvKlgVY"></iframe>
               <div class="video-description">
-                <h1>SampleTitle</h1>
+                <h1><?php echo $thread_title ?></h1>
                 <p>サンプルサンプルサンプルサンプル</p>
               </div>
             </div>
             <div class="thread">
-              <div class="post">
-                <input type="text" name="" value="">
+              <form class="post" method="post">
+                <div class="comment-form">
+                  <i>icon</i><input id="js-show" autocomplete="off" type="text" name="chat" placeholder="書き込みを入力">
+                  <input type="text" name="dummy" style="display: none;">
+                </div>
+                <div id="js-show-target" class="submit-btn hide">
+                  <button id="js-hide" class="tube-btn" type="button" name="button">キャンセル</button>
+                  <button type="button" name="button" onclick="submit();">コメント</button>
+                </div>
+              </form>
+              <?php foreach ($dbGetComment as $key => $val) {
+               ?>
+              <div class="comment-wrapper">
+                <i>icon</i>
+                <div class="comment">
+                  <h5><?php
+                    if($val['name'] == ""){
+                      echo "匿名";
+                    }else{
+                      echo $val['name'];
+                    }
+                  ?></h5>
+                  <p><?php echo $val['comment_val'] ?></p>
+                </div>
               </div>
-              <div class="comment">
-                <i>icon</i><h5>name</h5>
-                <p>content</p>
-              </div>
+              <?php
+                }
+               ?>
             </div>
           </div>
         </div>
@@ -218,5 +245,6 @@
         </div>
       </div>
     </main>
+    <script type="text/javascript" src="./src/tubejs/show_submit_btn.js"></script>
   </body>
 </html>

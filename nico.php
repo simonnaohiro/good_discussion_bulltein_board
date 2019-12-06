@@ -1,6 +1,5 @@
 <?php
   require('function.php');
-
   debug('「「「「「「「「「「「「「「「「「「「「「');
   debug('ニコレイアウト');
   debug('「「「「「「「「「「「「「「「「「「「「「');
@@ -69,12 +68,14 @@
                 ここに広告
               </div>
               <div class="video">
-                <iframe src="https://www.youtube.com/embed/pbPy9NT9W6Q" width="" height=""></iframe>
+                <div id="commentLayer">
+                </div>
+                <iframe id="media" src="https://www.youtube.com/embed/pbPy9NT9W6Q" ></iframe>
               </div>
               <div class="controller-wrapper">
               </div>
               <form class="form-wrapper" method="post">
-                <input type="text" class="command-box" name="" placeholder="コマンド" colspan="2"><input type="text" class="comment-form" name="chat" placeholder="コメント"><input class="submit-btn" type="submit" value="コメントする">
+                <input type="text" class="command-box" name="" placeholder="コマンド" colspan="2"><input type="text" autocomplete="off" class="comment-form" name="chat" placeholder="コメント"><input class="submit-btn" type="submit" value="コメントする">
               </form>
             </div>
           </div>
@@ -113,25 +114,58 @@
                   </ul>
                 </div>
                 <div class="comment-body">
-                  <?php
-                  foreach($dbGetComment as $key => $val){
-                   ?>
-                  <div id="js-comm-target" class="comment comment-contents">
+                   <div id="js-comm-target" class="comment-container">
+                     <?php
+                     foreach($dbGetComment as $key => $val){
+                      ?>
+                    <div id="comment<?php echo $val['id'] ?>" class="comment comment-contents">
+                      <?php
+                       echo $val['comment_val'];
+                      ?>
+                    </div>
                     <?php
-                     echo $val['comment_val'];
-                    ?>
+                      }
+                     ?>
+                   </div>
+                  <div id="js-commT-target" class="comment-container comment-time-wrapper">
+                    <?php
+                    foreach ($dbGetComment as $key => $val) {
+                      ?>
+                      <div class="comment-time comment-contents">
+                      <?php
+                        echo $val['comment_time'];
+                      // ?>
+                      </div>
+                      <?php
+                      }
+                     ?>
                   </div>
-                  <?php
+                  <div id="js-commD-target" class="comment-container">
+                    <?php
+                    foreach ($dbGetComment as $key => $val) {
+                     ?>
+                    <div class="comment-date comment-contents">
+                      <?php
+                      echo $val['comment_date'];
+                       ?>
+                    </div>
+                    <?php
                     }
-                   ?>
-                  <div id="js-commT-target" class="comment-time comment-contents">
-                    動画時間
+                     ?>
                   </div>
-                  <div id="js-commD-target" class="comment-date comment-contents">
-                    書き込み日時
-                  </div>
-                  <div id="js-commN-target" class="comment-num comment-contents">
-                    書き込み番号
+                  <div id="js-commN-target" class="comment-container">
+                    <?php
+                    foreach ($dbGetComment as $key => $val) {
+
+                     ?>
+                    <div class="comment-num comment-contents">
+                      <?php
+                      echo $val['id'];
+                       ?>
+                    </div>
+                    <?php
+                    }
+                     ?>
                   </div>
                 </div>
               </div>
@@ -143,5 +177,6 @@
     <footer>
 
     </footer>
+    <script type="text/javascript" src="./src/nicojs/getwidth.js"></script>
   </body>
 </html>

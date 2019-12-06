@@ -5,6 +5,10 @@ body {
 .top-body {
   height: auto; }
 
+.hide{
+  display: none;
+}
+
 footer {
   background: #000000;
   height: auto;

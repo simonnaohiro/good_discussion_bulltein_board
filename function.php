@@ -59,7 +59,7 @@ define('MSG11','入力された内容が一致しません');
 //====================
 //エラーメッセージ
 $err_msg = array();
-$dbName = (isset($_GET['tID'])) ? $_GET['tID'] : '';
+$tableName = (isset($_GET['tID'])) ? $_GET['tID'] : '';
 //===================
 //バリデーション関数
 //===================
@@ -77,13 +77,13 @@ function validEmail($str,$key){
     $err_msg[$key] = MSG05;
   }
 }
-function validMaxLen($str, $key, $max = 20){
+function validMaxLen($str, $key, $max = 255){
   if(mb_strlen($str) > $max){
     global $err_msg;
     $err_msg[$key] = MSG03;
   }
 }
-function validMinLen($str, $key, $min = 6){
+function validMinLen($str, $key, $min = 3){
   if(mb_strlen($str) < $min){
     global $err_msg;
     $err_msg[$key] = MSG04;
@@ -96,7 +96,7 @@ function validDubEmail($email){
     // DB接続
     $dbh = dbConnect();
     // SQL文作成
-    $sql = 'SELECT count(*) FROM users WHERE email = :email AND delete_flg = 0';
+    $sql = 'SELECT count(*) FROM users1 WHERE email = :email AND delete_flg = 0';
     $data = array(':email' => $email);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
@@ -125,8 +125,8 @@ function validMatch($str1,$str2,$key){
 //=================
 //DB接続関数
 //=================
-function dbConnect(){
-  $dsn = "mysql:dbname=resba_board;host=localhost;charset=utf8";
+function dbConnect($dbName){
+  $dsn = "mysql:dbname=".$dbName.";host=localhost;charset=utf8";
   $user = 'root';
   $password = 'root';
   $option = array(

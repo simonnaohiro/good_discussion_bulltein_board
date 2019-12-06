@@ -8,6 +8,8 @@
   debugLogStart();
 
   debug('ログアウトします');
+  //セッション変数のクリア
+  $_SESSION = array();
   //セッションを削除
   session_destroy();
   // ログインページへ
